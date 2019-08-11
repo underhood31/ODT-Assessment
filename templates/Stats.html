@@ -14,14 +14,34 @@
         <center>
         <hgroup>
             <h1>
-            Statistics
+            Statistical Report
             </h1>
         </hgroup>
         </center>
     </header>
     <center>
-        {{ line_chart.render()|safe }}
-        {{ bar_chart.render()|safe }}
+        <h2>Graphs for August 1</h2>
+        {{ line_chart1.render()|safe }}
+        {{ bar_chart1.render()|safe }}
+        <h3>Best perfoming trip: 11393</h3>
+        <h3>Worst perfoming trip: 2366</h3>
+        <br>
+        <br>
+        <h2>Graphs for August 2</h2>
+        {{ line_chart2.render()|safe }}
+        {{ bar_chart2.render()|safe }}
+        <h3>Best perfoming trip: 3632</h3>
+        <h3>Worst perfoming trip: 7037</h3>
+        <br>
+        <br>
+        <h2>Graphs for August 3</h2>
+        {{ line_chart3.render()|safe }}
+        {{ bar_chart3.render()|safe }}
+        <h3>Best perfoming trip: 12494</h3>
+        <h3>Worst perfoming trip: 4072</h3>
+        <form method="POST" action="/dnld">
+            <input type="submit" value="Download as pdf">
+        </form>
     </center>
 </body>
 </html>

@@ -50,8 +50,12 @@ def make_dict(name,db_path):
 	curs = con.cursor()
 	sqlData = curs.execute("select trip_id from vehicle_feed")
 	instance = sqlData.fetchall()
+	
 	for i in instance:
-		saved_trip_ids.append(int(i[0]))
+		try:
+			saved_trip_ids.append(int(i[0]))
+		except:
+			continue
 	print(saved_trip_ids[0])
 
 	#comparing trip ids in static vs saved and implementing algo
