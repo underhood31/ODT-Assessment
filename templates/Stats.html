@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+   
+    <link href="../static/styles/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/svg.jquery.js"></script>
+    <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/pygal-tooltips.js"></script>
+  
+    <!-- <script src="../static/js/papaparse.min.js"></script> -->
+  </head>
+  <body>
+    <header>
+        <center>
+        <hgroup>
+            <h1>
+            Statistics
+            </h1>
+        </hgroup>
+        </center>
+    </header>
+    <center>
+        {{ line_chart.render()|safe }}
+        {{ bar_chart.render()|safe }}
+    </center>
+</body>
+</html>

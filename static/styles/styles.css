@@ -1,0 +1,138 @@
+body{
+	font-family: Chilanka;
+	font-size: 17px;
+	/* background-image: url(https://d39l2hkdp2esp1.cloudfront.net/img/eps/E2966_2x/c/E2966_01.jpg?20160614045100); */
+	background: #d8d5da;
+	background-attachment: fixed;
+}
+
+header{
+	width: 80%;
+	/* background-image: url(https://i.ytimg.com/vi/lClbGGHwN44/maxresdefault.jpg); */
+	background: #b2e3fb;
+	color: #704436;
+	margin-right: auto;
+	margin-left: auto;
+	overflow:hidden;
+	/* background-repeat: no-repeat; */
+	background-attachment: fixed;
+	padding: 1em;
+	border-radius: 1.5em;
+	border-width: 1em;
+	border-style: solid;
+	border-color: #0899b9;
+}
+nav li{
+	float :left;
+	margin-right: 12px;
+}
+
+nav ul{
+	list-style-type: none;
+}
+
+section{
+	width: 80%;
+	background-color: white;
+	color: black;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 1em;
+	border-color: #543670;
+	border-style: solid;
+	border-width: 0.5em;
+	border-radius: 1em;
+	font-family: 'Courier New', Courier, monospace
+}
+canvas{
+	width: 80%;
+	background-color: white;
+	color: black;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 1em;
+	border-color: #543670;
+	border-style: solid;
+	border-width: 0.5em;
+	border-radius: 1em;
+	font-family: 'Courier New', Courier, monospace
+}
+
+footer{
+	width: 80%;
+	background-color: black;
+	color: white;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 5px;
+	height: 75px;
+	border-color: black;
+	border-style: solid;
+	border-width: 0.5em;
+	border-radius: 1em;
+}
+p{
+	margin: 10px;
+}
+hgroup{
+	width: 70%;
+	/* float: center; */
+}
+
+hgroup h1{
+	padding-top: 0;
+	font-size: 1.3em;
+	line-height: 1em;
+	margin-left: auto;
+	margin-right: auto;
+}
+hgroup h2{
+	font-size: 0.6em;
+	line-height: 0.5em;
+	text-transform: uppercase;
+}
+high{
+	font-size: 2em;
+}
+highlight{
+	color: palevioletred;
+	font-size: 1.6em;
+	font-family: cursive
+}
+nav{
+	width: 30%;
+	float: right;
+}
+img{
+	float: right;
+	margin: 0px 0px 10px 10px;   
+}
+aside{
+	width: 80%;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 3px;
+	margin-bottom: 20px;
+	background-color: #61d894;
+	border-style: dotted;
+	border-color:  #21854b ;
+	border-width: 5px;
+	border-radius: 15px; 
+	font-size:20px; 
+}
+a:visited{
+	text-decoration: none;
+	color: green;
+}
+a:hover{
+	color: orange;
+	font-style: italic;	
+}
+form{
+	border-style: double;
+	border-width: 0.5em;
+	border-radius: 1em;
+	background: antiquewhite;
+	border-color: #704436;
+	padding: 0.5em;
+}
