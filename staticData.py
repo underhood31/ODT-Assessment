@@ -3,6 +3,7 @@ import absorbDatabase
 import sqlite3
 import operator
 import math
+import pickle
 
 def findDistInKm(lat0, lng0, lat1, lng1):					#FUNCTION FROM www.github.com/google/transitfeed/examples
 	"""
@@ -54,7 +55,8 @@ for i in instance:
 print(saved_trip_ids[0])
 
 #comparing trip ids in static vs saved and implementing algo
-allCases=[]
+allCases={}
+m=0
 for i in static_trip_ids:
 	found=False
 	for j in saved_trip_ids:
@@ -73,11 +75,16 @@ for i in static_trip_ids:
 		stopt.sort(key=operator.attrgetter('stop_sequence'))
 		for j in stops:
 			#Getting static data
-			static_time_hour=int(str(j.arrival_time).split(":")[0])
-			static_time_min=int(str(j.arrival_time).split(":")[1])
+			print(m)
+			m+=1
+			try:
+				static_time_hour=int(str(j.arrival_time).split(":")[0])
+				static_time_min=int(str(j.arrival_time).split(":")[1])
+			except:
+				continue
 			static_stop_id=j.stop_id
-			static_lat=sched.stops_by_id("2101")[0].stop_lat
-			static_long=sched.stops_by_id("2101")[0].stop_lon
+			static_lat=sched.stops_by_id(static_stop_id)[0].stop_lat
+			static_long=sched.stops_by_id(static_stop_id)[0].stop_lon
 			sqlData = curs.execute("select time,lat,lng from vehicle_feed where trip_id="+str(i))
 			instance = sqlData.fetchall()
 			for k in instance:
@@ -87,6 +94,8 @@ for i in static_trip_ids:
 						dist=findDistInKm(static_lat,static_long,float(k[1]),float(k[2]))
 						this_case[static_stop_id]=dist
 						break
-		allCases.append(this_case)
+		if this_case!={}:
+			allCases[i]=this_case
 						#getting saved data
-			
+with open('trip_dist_diff.dictionary', 'wb') as config_dictionary_file:
+	pickle.dump(allCases, config_dictionary_file)
