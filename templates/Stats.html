@@ -20,8 +20,23 @@
         </center>
     </header>
     <center>
+        <section>
+        <article>
+        About the graphs
+        
+        <p>Graph1</p>
+        <p>X-axis: n-th stop in the trip with the trip ID mentioned on the left of the graph</p>
+        <p>Y-axis: Difference between planned location(/stop) and the actual location at that time in meters</p>
+        <br>
+        <p>Graph2</p>
+        <p>X-axis: Average distance between planned location(/stop) and the actual location throughout the trip</p>
+        <p>Y-axis: Trip ID</p>
+        <br>
+        </article>
+        </section>
         <h2>Graphs for August 1</h2>
         {{ line_chart1.render()|safe }}
+        
         {{ bar_chart1.render()|safe }}
         <h3>Best perfoming trip: 11393</h3>
         <h3>Worst perfoming trip: 2366</h3>

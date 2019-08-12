@@ -16,7 +16,7 @@ dict3=None
 def make_graphs(dist_dict,r):
     line_chart = pygal.Line(width=1200, height=600,explicit_size=True,disable_xml_declaration=True)
     line_chart.title = 'Pattern of derailment from planned trip v/s stop number'
-    line_chart.x_title = "Stop number"
+    line_chart.x_title = "Trip ID"
     line_chart.y_title = "Distance in meters"
 
     for i in dist_dict.keys():
@@ -32,7 +32,7 @@ def make_graphs(dist_dict,r):
         total_dist=total_dist/len(list(dist_dict[i].values()))
         total_avg_dist_dict[i]=total_dist
     bar_chart = pygal.HorizontalBar(width=1200, height=600,explicit_size=True,disable_xml_declaration=True)
-    bar_chart.title = 'Average distance from real distance v/s trip numbers'
+    bar_chart.title = 'Average distance from planned position v/s trip numbers'
     bar_chart.y_title = "Stop number"
     bar_chart.x_title = "Distance in meters"
     for i in total_avg_dist_dict.keys():
