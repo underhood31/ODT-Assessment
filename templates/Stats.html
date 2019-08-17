@@ -32,31 +32,89 @@
         <p>X-axis: Average distance between planned location(/stop) and the actual location throughout the trip</p>
         <p>Y-axis: Trip ID</p>
         <br>
+        <p>Graph3</p>
+        <p>X-axis: Stops in the given trip</p>
+        <p>Y-axis: Time difference in minutes between the actual time the bus reached at the given stop v/s the planned time</p>
+        <br>
+        <p>Graph4</p>
+        <p>X-axis: Average time delay for each stop</p>
+        <p>Y-axis: Trip ID</p>
+        <small>[Inferences after the graphs]</small>
         </article>
         </section>
         <h2>Graphs for August 1</h2>
         {{ line_chart1.render()|safe }}
-        
+        <h4>Graph 1</h4>
         {{ bar_chart1.render()|safe }}
-        <h3>Best perfoming trip: 11393</h3>
-        <h3>Worst perfoming trip: 2366</h3>
+        <h4>Graph 2</h4>
+
+        {{ time_line_chart1.render()|safe }}
+        <h4>Graph 3</h4>
+        
+        {{ time_bar_chart1.render()|safe }}
+        <h4>Graph 4</h4>
+        
+        <!-- <h3>Best perfoming trip: 11393</h3>
+        <h3>Worst perfoming trip: 2366</h3> -->
         <br>
         <br>
         <h2>Graphs for August 2</h2>
         {{ line_chart2.render()|safe }}
+        <h4>Graph 1</h4>
         {{ bar_chart2.render()|safe }}
-        <h3>Best perfoming trip: 3632</h3>
-        <h3>Worst perfoming trip: 7037</h3>
+        <h4>Graph 2</h4>
+        
+        {{ time_line_chart2.render()|safe }}
+        <h4>Graph 3</h4>
+        
+        {{ time_bar_chart2.render()|safe }}
+        <h4>Graph 4</h4>
+        <!-- <h3>Best perfoming trip: 3632</h3>
+        <h3>Worst perfoming trip: 7037</h3> -->
         <br>
         <br>
         <h2>Graphs for August 3</h2>
         {{ line_chart3.render()|safe }}
+        <h4>Graph 1</h4>
         {{ bar_chart3.render()|safe }}
-        <h3>Best perfoming trip: 12494</h3>
-        <h3>Worst perfoming trip: 4072</h3>
+        <h4>Graph 2</h4>
+
+        {{ time_line_chart3.render()|safe }}
+        <h4>Graph 3</h4>
+        
+        {{ time_bar_chart3.render()|safe }}
+        <h4>Graph 4</h4>
+        <!-- <h3>Best perfoming trip: 12494</h3>
+        <h3>Worst perfoming trip: 4072</h3> -->
+
+        <section>
+            <article>
+                <h2>Inferences</h2>
+                <p>From type 1 graph we can infer,
+                    The pattern of how are the buses following the schedule. Generally, after the one-third of the journey, the buses are 
+                    getting off time. In the majority of the cases, they are not able to cover up for the delay and instead the distance from 
+                    the planned position further increases on the route ahead. But it is also observed that on the longer trips, the difference 
+                    in the distance reduces towards the end.
+                 </p>
+                 <p>
+                    Graph 2 & 4  gives us the average distance and time of the bus from the planned stop throughout the journey. Using this graph, 
+                    we can find out the trips which are most off time and work on finding the root cause of the problem on the narrowed 
+                    down number of trips. It gives valuable data for designing a solution. By mapping down the particular route, we can 
+                    brainstorm the possible issues and the stakeholders and lead towards an effective solution.
+                 </p>
+                 <p>
+                     From graph 3 we can observe the visible trend that the time difference at the stop in actual and planned data for a particular route 
+                     is more or less constant except a very few cases. From this it is easy to infer that the major cause of delay of buses is that they are
+                     leaving late from the depot.
+                 </p>
+            </article>
+        </section>
         <form method="POST" action="/dnld">
             <input type="submit" value="Download as pdf">
         </form>
     </center>
+    <footer>
+        By Manavjeet Singh
+    </footer>
 </body>
 </html>

@@ -4,7 +4,7 @@ import sqlite3
 import operator
 import math
 import pickle
-
+import datetime
 def findDistInM(lat0, lng0, lat1, lng1):					#FUNCTION FROM www.github.com/google/transitfeed/examples
 	"""
 	Compute the geodesic distance in meters between two points on the
@@ -32,8 +32,9 @@ def findDistInM(lat0, lng0, lat1, lng1):					#FUNCTION FROM www.github.com/googl
 	c = 2.0 * math.atan2(math.sqrt(a), math.sqrt(1.0 - a))
 	return 6367000.0 * c
   
-def make_dict(name,db_path,sched):
-	
+def make_dict(name,db_path):
+	sched = pygtfs.Schedule(":memory:")                # create a schedule object (a sqlite database)
+	pygtfs.append_feed(sched, "GTFS.zip")	
 	routes = sched.routes
 
 	# Storing the static trip IDs
@@ -81,8 +82,7 @@ def make_dict(name,db_path,sched):
 				print(m)
 				m+=1
 				try:
-					static_time_hour=int(str(j.arrival_time).split(":")[0])
-					static_time_min=int(str(j.arrival_time).split(":")[1])
+					static_time=j.arrival_time
 				except:
 					continue
 				static_stop_id=j.stop_id
@@ -91,20 +91,26 @@ def make_dict(name,db_path,sched):
 				sqlData = curs.execute("select time,lat,lng from vehicle_feed where trip_id="+str(i))
 				instance = sqlData.fetchall()
 				for k in instance:
-					if int(k[0].split(":")[0])==static_time_hour:
+					dist = findDistInM(static_lat,static_long,float(k[1]),float(k[2]))
+					if dist<1000:
 						minute=int(k[0].split(":")[1])
-						if abs(minute-static_time_min)<=1:
-							dist=findDistInM(static_lat,static_long,float(k[1]),float(k[2]))
-							this_case[static_stop_id]=dist
-							break
+						hour=int(k[0].split(":")[0])
+						real_time = datetime.timedelta(hours=hour,minutes=minute)
+						this_case[static_stop_id]=int(abs(static_time-real_time).seconds/60);
+						break
+# if int(k[0].split(":")[0])==static_time_hour:
+					# 	minute=int(k[0].split(":")[1])
+					# 	if abs(minute-static_time_min)<=1:
+					# 		dist=findDistInM(static_lat,static_long,float(k[1]),float(k[2]))
+					# 		this_case[static_stop_id]=dist
+					# 		break
 			if this_case!={}:
 				allCases[i]=this_case
 							#getting saved data
 	with open(name + '.dictionary', 'wb') as config_dictionary_file:
 		pickle.dump(allCases, config_dictionary_file)
 
-sched = pygtfs.Schedule(":memory:")                # create a schedule object (a sqlite database)
-pygtfs.append_feed(sched, "GTFS.zip") 
-make_dict('trip_dist_diff1','bus_movements_2019_08_01.db',sched)
-make_dict('trip_dist_diff2','bus_movements_2019_08_02.db',sched)
-make_dict('trip_dist_diff3','bus_movements_2019_08_03.db',sched)
+
+make_dict('timeDist1','bus_movements_2019_08_01.db')
+make_dict('timeDist2','bus_movements_2019_08_02.db')
+# make_dict('timeDist3','bus_movements_2019_08_03.db')
